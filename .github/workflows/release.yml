@@ -2,8 +2,9 @@ name: Build and Release Chrome Extension
 
 on:
   push:
-    tags:
-      - 'v*' # 只在推送 v 开头的 tag 时触发，例如 v1.0.0
+    branches:
+      - main
+      - master
 
 jobs:
   build-and-release:
@@ -16,11 +17,26 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Extract Tag Name
-        id: extract_tag
-        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+      - name: Extract Version from manifest.json
+        id: extract_version
+        run: |
+          VERSION=$(jq -r .version manifest.json)
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+      - name: Check if Release exists
+        id: check_release
+        run: |
+          if gh release view "v${{ env.VERSION }}" > /dev/null 2>&1; then
+            echo "Release v${{ env.VERSION }} already exists. Skipping."
+            echo "skip=true" >> $GITHUB_ENV
+          else
+            echo "skip=false" >> $GITHUB_ENV
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Extension Archive
+        if: env.skip == 'false'
         run: |
           mkdir build
           # 拷贝扩展文件到 build 目录，排除不必要的文件
@@ -30,12 +46,15 @@ jobs:
                    --exclude='build' \
                    . build/
           cd build
-          zip -r ../PinCopy-${{ env.VERSION }}.zip .
+          zip -r ../PinCopy-v${{ env.VERSION }}.zip .
 
       - name: Create GitHub Release
+        if: env.skip == 'false'
         uses: softprops/action-gh-release@v2
         with:
-          files: PinCopy-${{ env.VERSION }}.zip
+          tag_name: v${{ env.VERSION }}
+          name: Release v${{ env.VERSION }}
+          files: PinCopy-v${{ env.VERSION }}.zip
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
