@@ -1,0 +1,61 @@
+/* PinCopy - 内容脚本样式 */
+
+/* ── 撑开「更多操作」容器，让我们的按钮与原按钮并排显示 ─────── */
+div[aria-label="更多操作"] {
+  display: flex !important;
+  align-items: center !important;
+  width: auto !important;
+  overflow: visible !important;
+}
+
+/* ── 收藏按钮：无背景，直接显示图标，与 Pinterest 原生图标风格一致 */
+.pincopy-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  outline: none;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+
+.pincopy-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.pincopy-btn svg {
+  pointer-events: none;
+  display: block;
+  flex-shrink: 0;
+}
+
+/* ── Toast 提示 ───────────────────────────────────────────────── */
+#pincopy-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(24, 24, 24, 0.9);
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 16px;
+  border-radius: 18px;
+  white-space: nowrap;
+  z-index: 2147483647;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+#pincopy-toast.pincopy-toast-show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}

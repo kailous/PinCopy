@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinCopy</title>
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- 顶部标题栏 -->
+    <header class="header">
+      <div class="header-left">
+        <div class="logo"></div>
+        <h1 class="title">PinCopy</h1>
+        <span class="badge" id="count-badge">0</span>
+      </div>
+      <div class="header-right">
+        <button class="icon-btn" id="copy-all-btn" title="全部复制"></button>
+        <button class="icon-btn" id="sort-btn" title="切换排序"></button>
+        <button class="icon-btn danger" id="clear-btn" title="清空全部"></button>
+      </div>
+    </header>
+
+
+
+    <!-- 内容区 -->
+    <div class="content-wrap">
+      <!-- 瀑布流画廊 -->
+      <div class="gallery" id="gallery"></div>
+
+      <!-- 空状态 -->
+      <div class="empty-state" id="empty-state">
+        <div class="icon-wrap"></div>
+        <h2>收藏夹是空的</h2>
+        <p>在 Pinterest 浏览时<br>点击图片上的书签按钮收藏</p>
+      </div>
+
+      <!-- 无搜索结果 -->
+      <div class="no-results" id="no-results">
+        <div class="icon-wrap"></div>
+        <p>没有找到匹配的图片</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 确认对话框 -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <h3>清空收藏？</h3>
+      <p>将删除全部 <span id="modal-count">0</span> 张图片，无法撤销。</p>
+      <div class="modal-actions">
+        <button class="btn-cancel" id="modal-cancel">取消</button>
+        <button class="btn-confirm" id="modal-confirm">确认清空</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="js/sidepanel.js"></script>
+</body>
+</html>

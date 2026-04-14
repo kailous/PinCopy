@@ -1,0 +1,41 @@
+name: Build and Release Chrome Extension
+
+on:
+  push:
+    tags:
+      - 'v*' # 只在推送 v 开头的 tag 时触发，例如 v1.0.0
+
+jobs:
+  build-and-release:
+    name: Build & Create Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # 允许创建 Release
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Extract Tag Name
+        id: extract_tag
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: Build Extension Archive
+        run: |
+          mkdir build
+          # 拷贝扩展文件到 build 目录，排除不必要的文件
+          rsync -r --exclude='.git' \
+                   --exclude='.github' \
+                   --exclude='*.md' \
+                   --exclude='build' \
+                   . build/
+          cd build
+          zip -r ../PinCopy-${{ env.VERSION }}.zip .
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: PinCopy-${{ env.VERSION }}.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

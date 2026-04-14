@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinCopy 设置</title>
+  <link rel="stylesheet" href="options/options.css">
+</head>
+<body>
+  <div class="options-container">
+    <header class="header">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E60023" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"/>
+        </svg>
+      </div>
+      <h1 class="title">PinCopy 设置</h1>
+    </header>
+
+    <main class="settings-content">
+      <section class="settings-group">
+        <h2>平台支持配置</h2>
+        <p class="description">在此开启或关闭特定网站上的图片收集模块。</p>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <span class="setting-name">Pinterest</span>
+            <span class="setting-desc">开启后，即可在 pinterest.com 上悬停图片出现收集按钮。</span>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="toggle-pinterest">
+            <span class="slider round"></span>
+          </label>
+        </div>
+
+      </section>
+
+      <section class="settings-group version-info">
+        <div class="version-left">
+          <h2>关于 PinCopy</h2>
+          <p class="description">当前版本：<span id="current-version">v1.0.0</span></p>
+        </div>
+        <button id="btn-check-update" class="btn-check-update">检查更新</button>
+      </section>
+    </main>
+    
+    <div id="toast" class="toast"></div>
+  </div>
+  <script src="options/options.js"></script>
+</body>
+</html>
