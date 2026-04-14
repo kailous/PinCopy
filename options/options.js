@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ========== 版本更新检测 ==========
-  const GITHUB_REPO = 'lipeng/pincopy'; // 用户可以自行通过配置页面或代码更改为实际仓库
+  const GITHUB_REPO = 'kailous/PinCopy'; // 用户可以自行通过配置页面或代码更改为实际仓库
   
   const versionSpan = document.getElementById('current-version');
   const btnCheckUpdate = document.getElementById('btn-check-update');
