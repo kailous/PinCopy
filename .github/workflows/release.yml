@@ -43,6 +43,9 @@ jobs:
           rsync -r --exclude='.git' \
                    --exclude='.github' \
                    --exclude='*.md' \
+                   --exclude='*.gif' \
+                   --exclude='*.mp4' \
+                   --exclude='.DS_Store' \
                    --exclude='build' \
                    . build/
           cd build
