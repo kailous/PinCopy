@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(head -179 /Users/lipeng/Documents/Repository/PinCopy/content.js)",
+      "Bash(echo \"\")",
+      "Bash(echo \"}\\)\\(\\)\")",
+      "Bash(cp /tmp/content_clean.js /Users/lipeng/Documents/Repository/PinCopy/content.js)"
     ]
   }
 }

@@ -35,6 +35,96 @@ div[aria-label="更多操作"] {
   flex-shrink: 0;
 }
 
+/* ── 画板 Pin 卡片收藏按钮（与星形按钮并排）────────────────── */
+.pincopy-pin-card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: 40px;
+  height: 40px; */
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.15s;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.pincopy-pin-card-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.pincopy-pin-card-btn svg {
+  pointer-events: none;
+  display: block;
+}
+
+/* ── 画板工具栏「收藏全部」按钮 ──────────────────────────────── */
+.pincopy-board-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  width: 72px;
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  padding: 0;
+  font-family: inherit;
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pincopy-board-tool-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background: #ffe0e3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+  margin-bottom: 6px;
+}
+
+.pincopy-board-tool:hover .pincopy-board-tool-icon {
+  background: #ffc8cd;
+}
+
+.pincopy-board-tool-icon svg {
+  color: #e60023;
+  flex-shrink: 0;
+}
+
+.pincopy-board-tool-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111;
+  text-align: center;
+  width: 72px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+.pincopy-board-tool.loading .pincopy-board-tool-icon {
+  background: #f0f0f0;
+  animation: pincopy-pulse 1s ease-in-out infinite;
+}
+
+@keyframes pincopy-pulse {
+
+  0%,
+  100% {
+    background: #f0f0f0;
+  }
+
+  50% {
+    background: #e0e0e0;
+  }
+}
+
 /* ── Toast 提示 ───────────────────────────────────────────────── */
 #pincopy-toast {
   position: fixed;

@@ -4,20 +4,23 @@ import { Icon } from './Icon.js';
  * 顶部导航栏组件
  */
 export class Header {
-  constructor({ onSort, onClear, onCopyAll }) {
+  constructor({ onSort, onClear, onCopyAll, onPushToBoard }) {
     this.onSort = onSort;
     this.onClear = onClear;
     this.onCopyAll = onCopyAll;
+    this.onPushToBoard = onPushToBoard;
 
     this.el = document.querySelector('.header');
     this.countBadge = this.el.querySelector('#count-badge');
     this.copyAllBtn = this.el.querySelector('#copy-all-btn');
+    this.pushBtn = this.el.querySelector('#push-btn');
     this.sortBtn = this.el.querySelector('#sort-btn');
     this.clearBtn = this.el.querySelector('#clear-btn');
     this.logo = this.el.querySelector('.logo');
 
     // 绑定事件（同步）
     this.copyAllBtn.addEventListener('click', () => this.onCopyAll());
+    this.pushBtn.addEventListener('click', () => this.onPushToBoard());
     this.sortBtn.addEventListener('click', () => this.onSort());
     this.clearBtn.addEventListener('click', () => this.onClear());
 
@@ -29,6 +32,7 @@ export class Header {
     await Promise.all([
       Icon.render(this.logo, 'logo'),
       Icon.render(this.copyAllBtn, 'copy'),
+      Icon.render(this.pushBtn, 'push'),
       Icon.render(this.sortBtn, 'sort'),
       Icon.render(this.clearBtn, 'clear'),
     ]);

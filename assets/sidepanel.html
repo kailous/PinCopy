@@ -18,6 +18,7 @@
       </div>
       <div class="header-right">
         <button class="icon-btn" id="copy-all-btn" title="全部复制"></button>
+        <button class="icon-btn" id="push-btn" title="推送到画板"></button>
         <button class="icon-btn" id="sort-btn" title="切换排序"></button>
         <button class="icon-btn danger" id="clear-btn" title="清空全部"></button>
       </div>
@@ -44,6 +45,49 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- 推送到画板对话框 -->
+  <div class="modal-overlay" id="push-modal-overlay">
+    <div class="modal">
+
+      <!-- 第一步：输入画板名 -->
+      <div id="push-step-input">
+        <h3>推送到画板</h3>
+        <p>将 <span id="push-modal-count">0</span> 张图片重新保存到指定的 Pinterest 画板。</p>
+        <input class="board-input" id="board-name-input" type="text" placeholder="画板名称 或 粘贴画板链接..." autocomplete="off" />
+        <div class="modal-actions">
+          <button class="btn-cancel" id="push-modal-cancel">取消</button>
+          <button class="btn-confirm" id="push-modal-confirm">下一步</button>
+        </div>
+      </div>
+
+      <!-- 第二步：等待用户手动 Save 一次 -->
+      <div id="push-step-wait" style="display:none">
+        <h3>识别画板 ID</h3>
+        <p>请在 Pinterest 上手动将<strong>任意一张</strong> Pin 保存到</p>
+        <div class="push-wait-board-name" id="push-wait-board-name"></div>
+        <p class="push-wait-hint">扩展检测到后将自动开始批量推送</p>
+        <div class="push-spinner"></div>
+        <div class="modal-actions">
+          <button class="btn-cancel" id="push-wait-cancel">取消</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 推送进度覆盖层 -->
+  <div class="push-progress-overlay" id="push-progress-overlay">
+    <div class="push-progress-box">
+      <div class="push-progress-title">正在推送到画板</div>
+      <div class="push-progress-board" id="push-progress-board"></div>
+      <div class="push-progress-bar-wrap">
+        <div class="push-progress-bar" id="push-progress-bar"></div>
+      </div>
+      <div class="push-progress-text" id="push-progress-text">0 / 0</div>
+      <button class="btn-cancel push-stop-btn" id="push-stop-btn">停止</button>
+    </div>
   </div>
 
   <!-- 确认对话框 -->
