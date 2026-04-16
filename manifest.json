@@ -7,7 +7,6 @@
     "storage",
     "sidePanel",
     "downloads",
-    "tabs",
     "cookies",
     "scripting"
   ],
@@ -58,7 +57,7 @@
         "assets/img/*.svg"
       ],
       "matches": [
-        "<all_urls>"
+        "*://*.pinterest.com/*"
       ]
     }
   ]
